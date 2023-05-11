@@ -1,0 +1,19 @@
+{
+  "name": "natours",
+  "version": "1.0.0",
+  "description": "NodeJs based project that uses fundamental node concepts like modules, ingestion, routing and some handson experience with inbuilt node modules viz. filesystem, http and url.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rajatrjoshi/Natours.git"
+  },
+  "author": "Rajat Joshi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rajatrjoshi/Natours/issues"
+  },
+  "homepage": "https://github.com/rajatrjoshi/Natours#readme"
+}
