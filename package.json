@@ -4,6 +4,7 @@
   "description": "NodeJs based project that uses fundamental node concepts like modules, ingestion, routing and some handson experience with inbuilt node modules viz. filesystem, http and url.",
   "main": "index.js",
   "scripts": {
+    "start" : "nodemon start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
