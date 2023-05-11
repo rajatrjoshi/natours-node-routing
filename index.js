@@ -3,7 +3,7 @@ const http = require('http');
 const url = require('url');
 
 // SERVER   
-const getCardData = (temp, product) => {
+const replaceTemplate = (temp, product) => {
     let output = temp.replace(/{%PRODUCTNAME%}/g, product.productName)
     output = output.replace(/{%IMAGE%}/g, product.image);
     output = output.replace(/{%PRICE%}/g, product.price);
@@ -26,31 +26,32 @@ const tempCard= fs.readFileSync('./templates/template-card.html', 'utf-8');
 const productData = JSON.parse(data);
 
 const server = http.createServer((req, res) => {
-    const pathName = req.url;
+    const {query, pathname} = url.parse(req.url, true);
 
     // Overview
-    if(pathName == "/" || pathName == "/overview"){
+    if(pathname == "/" || pathname == "/overview"){
         res.writeHead(200, {
             "Content-type" : "text/html"
         })
 
-        const htmlCard = productData.map(element => getCardData(tempCard, element)).join('');
+        const htmlCard = productData.map(element => replaceTemplate(tempCard, element)).join('');
         const output = tempOverview.replace("{%PRODUCT_CARDS%}", htmlCard);
 
         res.end(output);
     }
 
     // Product
-    else if(pathName == "/product"){
+    else if(pathname == "/product"){
         res.writeHead(200, {
             "Content-type" : "text/html"
         })
-        
-        res.end(tempProduct);
+        const product = productData[query.id]
+        const output = replaceTemplate(tempProduct, product);
+        res.end(output);
     }   
 
     // Api
-    else if(pathName == "/api"){
+    else if(pathname == "/api"){
         res.writeHead(200, {
             "Content-type" : "application/json"
         })
